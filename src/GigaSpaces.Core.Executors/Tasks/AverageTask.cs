@@ -14,14 +14,25 @@ namespace GigaSpaces.Core.Executors.Tasks
     {
         private readonly PropertyInfo _targetProperty;
 
-        public AverageTask(Expression<Func<T, T1>> func)
+        public AverageTask(Expression<Func<T, T1>> averagePropertyExpression)
         {
-            var memberExpression = func.Body as MemberExpression;
-            var propertyInfo = memberExpression.Member as PropertyInfo;
+            if (averagePropertyExpression == null)
+                throw new ArgumentNullException("averagePropertyExpression");
 
-            _targetProperty = propertyInfo;
+            var memberExpression = averagePropertyExpression.Body as MemberExpression;
+
+            if (memberExpression != null && memberExpression.Member is PropertyInfo)
+            {
+                var propertyInfo = memberExpression.Member as PropertyInfo;
+                _targetProperty = propertyInfo;
+            }
+            else
+            {
+                throw new InvalidOperationException("The call to the constructor should have provided a valid MemberExpression for the target property.");
+            }
         }
 
+        /// <inheritdoc />
         public long Execute(ISpaceProxy spaceProxy, ITransaction tx)
         {
             var records = spaceProxy.ReadMultiple<T>(new SqlQuery<T>(string.Empty) {Projections = new[] {_targetProperty.Name}});
