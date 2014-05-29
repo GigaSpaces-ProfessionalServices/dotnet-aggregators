@@ -51,6 +51,7 @@
     <Compile Include="Tasks\AverageTask.cs" />
     <Compile Include="Tasks\MaximumTask.cs" />
     <Compile Include="Tasks\MinimumTask.cs" />
+    <Compile Include="Tasks\SumTask.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
