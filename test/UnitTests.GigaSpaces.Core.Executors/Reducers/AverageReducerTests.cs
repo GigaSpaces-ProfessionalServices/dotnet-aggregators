@@ -1,10 +1,7 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using GigaSpaces.Core.Executors;
+﻿using GigaSpaces.Core.Executors;
 using GigaSpaces.Core.Executors.Reducers;
-using GigaSpaces.Core.Executors.Tasks;
 using NUnit.Framework;
-using UnitTests.GigaSpaces.Core.Executors.Tasks;
+using UnitTests.GigaSpaces.Core.Executors.Utilities;
 
 namespace UnitTests.GigaSpaces.Core.Executors.Reducers
 {
@@ -14,11 +11,7 @@ namespace UnitTests.GigaSpaces.Core.Executors.Reducers
         [Test]
         public void TheReducerIsSerializable()
         {
-            var formatter = new BinaryFormatter();
-            using (var memoryStream = new MemoryStream())
-            {
-                formatter.Serialize(memoryStream, new AverageReducer<TestData, int>(o => o.IntegerProperty));
-            }
+            SerializationUtilities.AssertObjectIsSerializable(new AverageReducer<TestData, int>(o => o.IntegerProperty));
         }
 
         [Test]

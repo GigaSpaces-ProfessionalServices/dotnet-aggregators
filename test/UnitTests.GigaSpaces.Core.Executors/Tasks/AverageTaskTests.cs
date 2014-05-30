@@ -5,6 +5,7 @@ using GigaSpaces.Core;
 using GigaSpaces.Core.Executors.Tasks;
 using Moq;
 using NUnit.Framework;
+using UnitTests.GigaSpaces.Core.Executors.Utilities;
 
 namespace UnitTests.GigaSpaces.Core.Executors.Tasks
 {
@@ -14,11 +15,7 @@ namespace UnitTests.GigaSpaces.Core.Executors.Tasks
         [Test]
         public void TheTaskIsSerializable()
         {
-            var formatter = new BinaryFormatter();
-            using (var memoryStream = new MemoryStream())
-            {
-                formatter.Serialize(memoryStream, new AverageTask<TestObject, int>(o => o.IntegerProperty));
-            }
+            SerializationUtilities.AssertObjectIsSerializable(new AverageTask<TestObject, int>(o => o.IntegerProperty));
         }
 
         [Test]

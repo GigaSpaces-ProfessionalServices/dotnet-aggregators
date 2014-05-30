@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using GigaSpaces.Core.Executors.Extensions;
 
 namespace GigaSpaces.Core.Executors.Tasks
 {
@@ -19,17 +20,7 @@ namespace GigaSpaces.Core.Executors.Tasks
             if (averagePropertyExpression == null)
                 throw new ArgumentNullException("averagePropertyExpression");
 
-            var memberExpression = averagePropertyExpression.Body as MemberExpression;
-
-            if (memberExpression != null && memberExpression.Member is PropertyInfo)
-            {
-                var propertyInfo = memberExpression.Member as PropertyInfo;
-                _targetProperty = propertyInfo;
-            }
-            else
-            {
-                throw new InvalidOperationException("The call to the constructor should have provided a valid MemberExpression for the target property.");
-            }
+            _targetProperty = averagePropertyExpression.ParsePropertyInfo();
         }
 
         /// <inheritdoc />
