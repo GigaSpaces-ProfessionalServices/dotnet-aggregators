@@ -5,6 +5,11 @@ using GigaSpaces.Core.Executors.Extensions;
 
 namespace GigaSpaces.Core.Executors.Tasks
 {
+    /// <summary>
+    /// Performs a maximum operation in the space on the specified property.
+    /// </summary>
+    /// <typeparam name="T">The space class containing the target property.</typeparam>
+    /// <typeparam name="T1">The return type of the target property.</typeparam>
     [Serializable]
     public class MaximumTask<T, T1> : ISpaceTask<long>
     {
@@ -18,6 +23,7 @@ namespace GigaSpaces.Core.Executors.Tasks
             _targetProperty = maximumPropertyExpression.ParsePropertyInfo();
         }
 
+        /// <inheritdoc />
         public long Execute(ISpaceProxy spaceProxy, ITransaction tx)
         {
             bool isSet = false;

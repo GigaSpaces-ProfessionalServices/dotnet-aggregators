@@ -5,6 +5,11 @@ using GigaSpaces.Core.Executors.Extensions;
 
 namespace GigaSpaces.Core.Executors.Tasks
 {
+    /// <summary>
+    /// Performs a sum operation in the space on the specified property.
+    /// </summary>
+    /// <typeparam name="T">The space class containing the target property.</typeparam>
+    /// <typeparam name="T1">The return type of the target property.</typeparam>
     [Serializable]
     public class SumTask<T, T1> : ISpaceTask<long>
     {
@@ -16,8 +21,9 @@ namespace GigaSpaces.Core.Executors.Tasks
                 throw new ArgumentNullException("sumExpression");
 
             _targetProperty = sumExpression.ParsePropertyInfo();
-        } 
+        }
 
+        /// <inheritdoc />
         public long Execute(ISpaceProxy spaceProxy, ITransaction tx)
         {
             long output = 0;

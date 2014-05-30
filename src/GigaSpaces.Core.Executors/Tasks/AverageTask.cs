@@ -8,7 +8,7 @@ namespace GigaSpaces.Core.Executors.Tasks
     /// <summary>
     /// Performs an average operation against the space proxy.
     /// </summary>
-    /// <typeparam name="T">The target space class.</typeparam>
+    /// <typeparam name="T">The space class containing the target property.</typeparam>
     /// <typeparam name="T1">The return type of the target property.</typeparam>
     [Serializable]
     public class AverageTask<T,T1> : ISpaceTask<long>

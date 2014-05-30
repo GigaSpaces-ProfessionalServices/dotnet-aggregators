@@ -4,6 +4,11 @@ using GigaSpaces.Core.Executors.Tasks;
 
 namespace GigaSpaces.Core.Executors.Reducers
 {
+    /// <summary>
+    /// Performs an average reduce operation against the space proxy.
+    /// </summary>
+    /// <typeparam name="T">The space class containing the target property.</typeparam>
+    /// <typeparam name="T1">The return type of the target property.</typeparam>
     [Serializable]
     public class AverageReducer<T, T1> : AverageTask<T, T1>, IDistributedSpaceTask<long, long>
     {
@@ -11,11 +16,7 @@ namespace GigaSpaces.Core.Executors.Reducers
         {
         }
 
-        public new long Execute(ISpaceProxy spaceProxy, ITransaction tx)
-        {
-            return base.Execute(spaceProxy, tx);
-        }
-
+        /// <inheritdoc />
         public long Reduce(SpaceTaskResultsCollection<long> results)
         {
             long sum = 0;
