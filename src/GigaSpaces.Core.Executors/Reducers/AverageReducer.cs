@@ -4,7 +4,8 @@ using GigaSpaces.Core.Executors.Tasks;
 
 namespace GigaSpaces.Core.Executors.Reducers
 {
-    public class AverageReducer<T, T1> : AverageTask<T, T1>, IDistributedSpaceTask<long>
+    [Serializable]
+    public class AverageReducer<T, T1> : AverageTask<T, T1>, IDistributedSpaceTask<long, long>
     {
         public AverageReducer(Expression<Func<T, T1>> averagePropertyExpression) : base(averagePropertyExpression)
         {
