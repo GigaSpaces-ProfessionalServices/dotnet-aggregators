@@ -20,6 +20,7 @@ namespace GigaSpaces.Core.Executors.Tasks
 
         public long Execute(ISpaceProxy spaceProxy, ITransaction tx)
         {
+            bool isSet = false;
             long output = 0;
 
             var records =
@@ -28,9 +29,10 @@ namespace GigaSpaces.Core.Executors.Tasks
             foreach (T record in records)
             {
                 long testValue = Convert.ToInt64(_targetProperty.GetValue(record));
-                if (testValue > output)
+                if (!isSet || testValue > output)
                 {
                     output = testValue;
+                    isSet = true;
                 }
             }
 

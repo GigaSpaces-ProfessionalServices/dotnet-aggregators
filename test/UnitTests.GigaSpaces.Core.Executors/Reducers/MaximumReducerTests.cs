@@ -50,6 +50,24 @@ namespace UnitTests.GigaSpaces.Core.Executors.Reducers
             Assert.AreEqual(5, actual);
         }
 
+
+        [Test]
+        public void SubZeroValuesActuallyModifyResult()
+        {
+            // Arrange
+            var underTest = new MaximumReducer<TestData, int>(d => d.IntegerProperty);
+
+            // Act
+            var actual = underTest.Reduce(new SpaceTaskResultsCollection<long>()
+            {
+                new SpaceTaskResult<long>(-2, null),
+                new SpaceTaskResult<long>(-5, null),
+            });
+
+            // Assert
+            Assert.AreEqual(-2, actual);
+        }
+
         private class TestData
         {
             public int IntegerProperty { get; set; }

@@ -13,13 +13,15 @@ namespace GigaSpaces.Core.Executors.Reducers
 
         public long Reduce(SpaceTaskResultsCollection<long> results)
         {
+            bool isSet = false;
             long output = 0;
 
             foreach (var spaceTaskResult in results)
             {
-                if (output < spaceTaskResult.Result)
+                if (!isSet || output < spaceTaskResult.Result)
                 {
                     output = spaceTaskResult.Result;
+                    isSet = true;
                 }
             }
 

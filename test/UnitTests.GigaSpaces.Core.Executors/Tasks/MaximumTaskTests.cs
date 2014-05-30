@@ -43,13 +43,29 @@ namespace UnitTests.GigaSpaces.Core.Executors.Tasks
             var underTest = new MaximumTask<TestData, int>(d => d.IntegerNumber);
             var mockedSpaceProxy = new Mock<ISpaceProxy>();
             mockedSpaceProxy.Setup(m => m.ReadMultiple<TestData>(It.IsAny<SqlQuery<TestData>>()))
-                .Returns(new[] { new TestData { IntegerNumber = 5 }, new TestData { IntegerNumber = 2 } });
+                .Returns(new[] { new TestData { IntegerNumber = 2 }, new TestData { IntegerNumber = 5 } });
 
             // Act
             var actual = underTest.Execute(mockedSpaceProxy.Object, null);
 
             // Assert
             Assert.AreEqual(5, actual);
+        }
+
+        [Test]
+        public void SubZeroValuesActuallyModifyResult()
+        {
+            // Arrange
+            var underTest = new MaximumTask<TestData, int>(d => d.IntegerNumber);
+            var mockedSpaceProxy = new Mock<ISpaceProxy>();
+            mockedSpaceProxy.Setup(m => m.ReadMultiple<TestData>(It.IsAny<SqlQuery<TestData>>()))
+                .Returns(new[] { new TestData { IntegerNumber = -2 }, new TestData { IntegerNumber = -5 } });
+
+            // Act
+            var actual = underTest.Execute(mockedSpaceProxy.Object, null);
+
+            // Assert
+            Assert.AreEqual(-2, actual); 
         }
     }
 }
