@@ -48,11 +48,13 @@
     <Compile Include="Reducers\AverageReducer.cs" />
     <Compile Include="Reducers\MaximumReducer.cs" />
     <Compile Include="Reducers\MinimumReducer.cs" />
-    <Compile Include="Reducers\SumReducer.cs" />
+    <Compile Include="Reducers\SumSpaceObjectReducer.cs" />
+    <Compile Include="Reducers\SumSpacePropertyReducer.cs" />
     <Compile Include="Tasks\AverageTask.cs" />
     <Compile Include="Tasks\MaximumTask.cs" />
     <Compile Include="Tasks\MinimumTask.cs" />
-    <Compile Include="Tasks\SumTask.cs" />
+    <Compile Include="Tasks\SumSpaceObjectTask.cs" />
+    <Compile Include="Tasks\SumSpacePropertyTask.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

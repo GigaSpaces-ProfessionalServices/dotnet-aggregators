@@ -7,19 +7,19 @@ using UnitTests.GigaSpaces.Core.Executors.Utilities;
 namespace UnitTests.GigaSpaces.Core.Executors.Tasks
 {
     [TestFixture]
-    public class SumTaskTests
+    public class SumSpacePropertyTaskTests
     {
         [Test]
         public void TaskIsSerializable()
         {
-            SerializationUtilities.AssertObjectIsSerializable(new SumTask<TestData, int>(d => d.IntegerProperty));
+            SerializationUtilities.AssertObjectIsSerializable(new SumSpacePropertyTask<TestData, int>(d => d.IntegerProperty));
         }
 
         [Test]
         public void SumsAllData()
         {
             // Arrange
-            var underTest = new SumTask<TestData, int>(d => d.IntegerProperty);
+            var underTest = new SumSpacePropertyTask<TestData, int>(d => d.IntegerProperty);
             var mockedSpaceProxy = new Mock<ISpaceProxy>();
             mockedSpaceProxy.Setup(m => m.ReadMultiple<TestData>(It.IsAny<SqlQuery<TestData>>()))
                 .Returns(new[] { new TestData { IntegerProperty = 2 }, new TestData { IntegerProperty = 5 } });

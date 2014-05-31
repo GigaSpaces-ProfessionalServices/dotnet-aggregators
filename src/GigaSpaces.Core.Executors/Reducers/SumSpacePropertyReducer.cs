@@ -10,9 +10,9 @@ namespace GigaSpaces.Core.Executors.Reducers
     /// <typeparam name="T">The space class containing the target property.</typeparam>
     /// <typeparam name="T1">The return type of the target property.</typeparam>
     [Serializable]
-    public class SumReducer<T, T1> : SumTask<T, T1>, IDistributedSpaceTask<long, long>
+    public class SumSpacePropertyReducer<T, T1> : SumSpacePropertyTask<T, T1>, IDistributedSpaceTask<long, long>
     {
-        public SumReducer(Expression<Func<T, T1>> sumExpression) : base(sumExpression)
+        public SumSpacePropertyReducer(Expression<Func<T, T1>> sumExpression) : base(sumExpression)
         {
         }
 

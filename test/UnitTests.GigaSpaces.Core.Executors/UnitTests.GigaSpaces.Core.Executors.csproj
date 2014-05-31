@@ -53,11 +53,13 @@
     <Compile Include="Reducers\AverageReducerTests.cs" />
     <Compile Include="Reducers\MaximumReducerTests.cs" />
     <Compile Include="Reducers\MinimumReducerTests.cs" />
-    <Compile Include="Reducers\SumReducerTests.cs" />
+    <Compile Include="Reducers\SumSpaceObjectReducerTests.cs" />
+    <Compile Include="Reducers\SumSpacePropertyReducerTests.cs" />
     <Compile Include="Tasks\AverageTaskTests.cs" />
     <Compile Include="Tasks\MaximumTaskTests.cs" />
     <Compile Include="Tasks\MinimumTaskTests.cs" />
-    <Compile Include="Tasks\SumTaskTests.cs" />
+    <Compile Include="Tasks\SumSpaceObjectTaskTests.cs" />
+    <Compile Include="Tasks\SumSpacePropertyTaskTests.cs" />
     <Compile Include="Utilities\SerializationUtilities.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,11 +11,11 @@ namespace GigaSpaces.Core.Executors.Tasks
     /// <typeparam name="T">The space class containing the target property.</typeparam>
     /// <typeparam name="T1">The return type of the target property.</typeparam>
     [Serializable]
-    public class SumTask<T, T1> : ISpaceTask<long>
+    public class SumSpacePropertyTask<T, T1> : ISpaceTask<long>
     {
         private PropertyInfo _targetProperty;
 
-        public SumTask(Expression<Func<T, T1>> sumExpression)
+        public SumSpacePropertyTask(Expression<Func<T, T1>> sumExpression)
         {
             if (sumExpression == null)
                 throw new ArgumentNullException("sumExpression");

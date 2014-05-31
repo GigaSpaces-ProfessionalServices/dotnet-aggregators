@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GigaSpaces.Core;
+﻿using GigaSpaces.Core;
 using GigaSpaces.Core.Executors;
 using GigaSpaces.Core.Executors.Reducers;
 using Moq;
@@ -13,19 +8,19 @@ using UnitTests.GigaSpaces.Core.Executors.Utilities;
 namespace UnitTests.GigaSpaces.Core.Executors.Reducers
 {
     [TestFixture]
-    public class SumReducerTests
+    public class SumSpacePropertyReducerTests
     {
         [Test]
         public void TaskIsSerializable()
         {
-            SerializationUtilities.AssertObjectIsSerializable(new SumReducer<TestData, int>(d => d.IntegerProperty));
+            SerializationUtilities.AssertObjectIsSerializable(new SumSpacePropertyReducer<TestData, int>(d => d.IntegerProperty));
         }
 
         [Test]
         public void SumsAllData()
         {
             // Arrange
-            var underTest = new SumReducer<TestData, int>(d => d.IntegerProperty);
+            var underTest = new SumSpacePropertyReducer<TestData, int>(d => d.IntegerProperty);
             var mockedSpaceProxy = new Mock<ISpaceProxy>();
             mockedSpaceProxy.Setup(m => m.ReadMultiple<TestData>(It.IsAny<SqlQuery<TestData>>()))
                 .Returns(new[] { new TestData { IntegerProperty = 2 }, new TestData { IntegerProperty = 5 } });
